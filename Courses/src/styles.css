@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+app-courses-list-item:nth-of-type(odd) div {
+  background-color: #fbfbfb;
+}
+app-courses-list-item:hover div {
+  background-color: #f7f7f7 !important;
+  cursor: pointer;
+}

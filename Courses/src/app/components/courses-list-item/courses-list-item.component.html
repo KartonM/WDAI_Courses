@@ -1,0 +1,11 @@
+<div (mouseleave)="starRating.clearRating()" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{ course.name }}</h5>
+    <a href="#" (click)="delete($event)" class="text-danger">Usuń</a>
+  </div>
+  <p class="mb-1">{{ getShortDescription() }}<a href="#" *ngIf="course.description.length >= shortDescriptionLength">Więcej</a></p>
+  <div class="d-flex w-100 justify-content-between mt-3">
+    <small class="text-muted">{{ course.semester }}. semestr, {{ course.ECTS }} ECTS</small>
+    <app-star-rating></app-star-rating>
+  </div>
+</div>

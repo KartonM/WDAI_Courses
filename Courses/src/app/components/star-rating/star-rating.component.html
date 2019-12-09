@@ -1,0 +1,7 @@
+<div (mouseout)="clearRating()" class="p-2">
+  Oceń kurs:
+  <span (mouseover)="starHovered(i)" (click)="setRate(i)" *ngFor="let i of starNumbers">
+    <i *ngIf="!starFilled[i]" class="far fa-star ml-1"></i>
+    <i *ngIf="starFilled[i]" class="fas fa-star ml-1"></i>
+  </span>
+</div>

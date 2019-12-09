@@ -1,0 +1,5 @@
+<div class="col-10">
+  <p>Lista kursów</p>
+  <app-courses-list-item *ngFor="let course of courses" [course]="course" (deleteCourse)="deleteCourse($event)">
+  </app-courses-list-item>
+</div>
