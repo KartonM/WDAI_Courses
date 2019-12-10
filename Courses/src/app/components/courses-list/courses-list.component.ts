@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Course } from '../../models/Course';
+import { CourseFilters } from '../../models/CourseFilters';
 
 @Component({
   selector: 'app-courses-list',
@@ -8,6 +9,8 @@ import { Course } from '../../models/Course';
 })
 export class CoursesListComponent implements OnInit {
   @Input() courses: Course[];
+  @Input() courseFilters: CourseFilters = new CourseFilters();
+
   constructor() { }
 
   ngOnInit() {

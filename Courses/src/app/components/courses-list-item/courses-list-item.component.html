@@ -12,7 +12,10 @@
     </div>
   </div>
   <div class="d-flex w-100 justify-content-between mt-3">
-    <small class="text-muted">{{ course.semester }}. semestr, {{ course.ECTS }} ECTS</small>
-    <app-star-rating></app-star-rating>
+    <div class="text-muted mt-5">{{ course.semester }}.&nbsp;semestr, {{ course.ECTS }}&nbsp;ECTS</div>
+    <div>
+      <p>Średnia ocen: <b>{{ course.rating }}</b></p>
+      <app-star-rating></app-star-rating>
+    </div>
   </div>
 </div>

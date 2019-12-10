@@ -1,0 +1,41 @@
+<div>
+  <h4>Filtry</h4>
+  <a href="#" (click)="clearFilters($event)">Wyczyść</a>
+  <form [formGroup]="filtersForm" novalidate (ngSubmit)="applyFilters()">
+    <h5 class="mt-3">Nazwa</h5>
+    <input type="text" class="form-control" placeholder="Wyszukaj" formControlName="search"/>
+    <hr />
+    <h5 class="mt-3">Semestr</h5>
+    <div formArrayName="semester" *ngFor="let semNumber of semesterNumbers" class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [formControlName]="semNumber">
+      <label class="form-check-label" for="defaultCheck1">
+        {{ semNumber + 1 }}. semestr
+      </label>
+    </div>
+    <hr />
+    <h5 class="mt-3">ECTS</h5>
+    <div class="row">
+      <div class="col-6">
+        <label>Min</label>
+        <input class="form-control" type="number" formControlName="minECTS"/>
+      </div>
+      <div class="col-6">
+        <label>Max</label>
+        <input class="form-control" type="number" formControlName="maxECTS"/>
+      </div>
+    </div>
+    <hr />
+    <h5 class="mt-3">Ocena</h5>
+    <div class="row">
+      <div class="col-6">
+        <label>Min</label>
+        <input class="form-control" type="number" formControlName="minRate"/>
+      </div>
+      <div class="col-6">
+        <label>Max</label>
+        <input class="form-control" type="number" formControlName="maxRate"/>
+      </div>
+    </div>
+    <button class="btn btn-outline-primary mt-3">Zastosuj</button>
+  </form>
+</div>

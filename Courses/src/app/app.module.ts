@@ -9,6 +9,8 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { CoursesListItemComponent } from './components/courses-list-item/courses-list-item.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { AddCourseFormComponent } from './components/add-course-form/add-course-form.component';
+import { CourseFiltersComponent } from './components/course-filters/course-filters.component';
+import { SearchPipe, SemesterPipe, ECTSPipe, RatePipe } from './components/courses-list/CourseFilterPipes';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,12 @@ import { AddCourseFormComponent } from './components/add-course-form/add-course-
     CoursesListComponent,
     CoursesListItemComponent,
     StarRatingComponent,
-    AddCourseFormComponent
+    AddCourseFormComponent,
+    CourseFiltersComponent,
+    SearchPipe,
+    SemesterPipe,
+    ECTSPipe,
+    RatePipe
   ],
   imports: [
     BrowserModule,
