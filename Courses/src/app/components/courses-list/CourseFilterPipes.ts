@@ -33,8 +33,8 @@ export class ECTSPipe implements PipeTransform {
       return [];
     if (!min && !max)
       return courses;
-    const upper = max ? max : Infinity;
-    const lower = min ? min : -Infinity;
+    const lower = min == null ? -Infinity : min;
+    const upper = max == null ? Infinity : max;
     return courses.filter(c => c.ECTS >= lower && c.ECTS <= upper);
   }
 }
@@ -46,8 +46,8 @@ export class RatePipe implements PipeTransform {
       return [];
     if (!min && !max)
       return courses;
-    const upper = max ? max : Infinity;
-    const lower = min ? min : -Infinity;
+    const lower = min == null ? -Infinity : min;
+    const upper = max == null ? Infinity : max;
     return courses.filter(c => c.rating >= lower && c.rating <= upper);
   }
 }

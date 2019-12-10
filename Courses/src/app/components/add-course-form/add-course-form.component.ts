@@ -38,6 +38,6 @@ export class AddCourseFormComponent implements OnInit {
     let courseToBeAdded: Course = this.courseForm.value;
     console.log(courseToBeAdded);
     this.addCourse.emit(courseToBeAdded);
-    this.courseForm.reset();
+    this.courseForm.reset({ type: '0' });
   }
 }
