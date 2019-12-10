@@ -1,4 +1,7 @@
 <div>
-  <p>Kursy</p>
-  <app-courses-list class="row" [courses]="courses"></app-courses-list>
+  <h2>Kursy</h2>
+  <div id="addCourseContainer" class="p-4">
+    <app-add-course-form (addCourse)="addCourse($event)"></app-add-course-form>
+  </div>
+  <app-courses-list class="row  mt-4" [courses]="courses"></app-courses-list>
 </div>

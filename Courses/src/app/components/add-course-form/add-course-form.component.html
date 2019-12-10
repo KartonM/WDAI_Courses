@@ -1,0 +1,88 @@
+<form [formGroup]="courseForm" novalidate (ngSubmit)="onSubmit()">
+  <h4>Dodaj kurs</h4>
+  <div class="form-group">
+    <label>Nazwa kursu</label>
+    <input type="text" name="name" class="form-control" formControlName="name"/>
+    <div *ngIf="courseForm.get('name').invalid && (courseForm.get('name').dirty || courseForm.get('name').touched)"
+         class="text-danger">
+      <small *ngIf="courseForm.get('name').errors.required">
+        Nazwa kursu jest wymagana
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Ścieżka do obrazka</label>
+    <input type="text" name="imgPath" class="form-control" formControlName="imgPath"/>
+    <div *ngIf="courseForm.get('imgPath').invalid && (courseForm.get('imgPath').dirty || courseForm.get('imgPath').touched)"
+         class="text-danger">
+      <small *ngIf="courseForm.get('imgPath').errors.required">
+        Ścieżka do obrazka jest wymagana
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-4">
+      <label>Semestr</label>
+      <input type="number" name="semester" min="1" max="8" step="1" class="form-control" formControlName="semester"/>
+      <div *ngIf="courseForm.get('semester').invalid && (courseForm.get('semester').dirty || courseForm.get('semester').touched)"
+           class="text-danger">
+        <small *ngIf="courseForm.get('semester').errors.required">
+          Semestr jest wymagany
+        </small>
+        <small *ngIf="courseForm.get('semester').errors.min || courseForm.get('semester').errors.max">
+          Semestr musi być liczbą z przedziału od 1 do 8
+        </small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>ECTS</label>
+      <input type="number" name="ECTS" min="1" max="30" step="1" class="form-control" formControlName="ECTS"/>
+      <div *ngIf="courseForm.get('ECTS').invalid && (courseForm.get('ECTS').dirty || courseForm.get('ECTS').touched)"
+           class="text-danger">
+        <small *ngIf="courseForm.get('ECTS').errors.required">
+          Liczba punktów ECTS jest wymagana
+        </small>
+        <small *ngIf="courseForm.get('ECTS').errors.min || courseForm.get('ECTS').errors.max">
+          Liczba punktów ECTS musi być z przedziału 1 do 30
+        </small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Liczba miejsc</label>
+      <input type="number" name="seats" min="1" max="300" step="1" class="form-control" formControlName="seats"/>
+      <div *ngIf="courseForm.get('seats').invalid && (courseForm.get('seats').dirty || courseForm.get('seats').touched)"
+           class="text-danger">
+        <small *ngIf="courseForm.get('seats').errors.required">
+          Liczba miejsc jest wymagana
+        </small>
+        <small *ngIf="courseForm.get('seats').errors.min || courseForm.get('seats').errors.max">
+          Liczba miejsc musi być w przedziale 1 do 300
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Typ kursu</label>
+    <select name="type" class="custom-select" formControlName="type">
+      <option *ngFor="let key of keys" [value]="key" [label]="getCourseTypeLabel(key)" selected="selected"></option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Opis</label>
+    <textarea rows="5" class="form-control" formControlName="description"></textarea>
+    <div *ngIf="courseForm.get('description').invalid && (courseForm.get('description').dirty || courseForm.get('description').touched)"
+         class="text-danger">
+      <small *ngIf="courseForm.get('description').errors.required">
+        Opis jest wymagany
+      </small>
+      <small *ngIf="courseForm.get('description').errors.minlength">
+        Opis musi mieć przynajmniej 50 znaków
+      </small>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-primary" [disabled]="!courseForm.valid">Dodaj</button>
+</form>

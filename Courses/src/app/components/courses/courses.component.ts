@@ -18,4 +18,8 @@ export class CoursesComponent implements OnInit {
     console.log(this.courses);
   }
 
+  addCourse(course: Course) {
+    course.id = Math.max.apply(Math, this.courses.map(c => c.id)) + 1;
+    this.courses.push(course);
+  }
 }
