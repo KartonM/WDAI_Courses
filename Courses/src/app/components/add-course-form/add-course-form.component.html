@@ -19,6 +19,9 @@
       <small *ngIf="courseForm.get('imgPath').errors.required">
         Ścieżka do obrazka jest wymagana
       </small>
+      <small *ngIf="courseForm.get('imgPath').errors.pattern">
+        Wprowadzony adres nie jest prawidłową ścieżką do obrazka
+      </small>
     </div>
   </div>
 

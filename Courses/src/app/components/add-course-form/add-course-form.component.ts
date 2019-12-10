@@ -22,7 +22,7 @@ export class AddCourseFormComponent implements OnInit {
   ngOnInit() {
     this.courseForm = this.formBuilder.group({
       name: ['', Validators.required],
-      imgPath: ['', Validators.required],
+      imgPath: ['', [Validators.required, Validators.pattern(/\.(jpeg|jpg|gif|png|bmp)/)]],
       semester: ['', [Validators.required, Validators.min(1), Validators.max(8)]],
       ECTS: ['', [Validators.required, Validators.min(1), Validators.max(30)]],
       seats: ['', [Validators.required, Validators.min(1), Validators.max(300)]],
