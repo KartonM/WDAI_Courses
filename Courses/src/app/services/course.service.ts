@@ -3,9 +3,9 @@ import *  as  data from './mockCourses.json';
 import { Course } from '../models/Course';
 import { CourseType } from '../models/Course';
 
-@Injectable({
+@Injectable(({
   providedIn: 'root'
-})
+}) as any)
 export class CourseService {
   constructor() { }
 
@@ -14,7 +14,7 @@ export class CourseService {
   }
 
   getCourse(id: number) {
-    return ((data as any).default as Course[]).find(c => c.id === id);
+    return this.getCourses().find(c => c.id === id);
   }
 
 

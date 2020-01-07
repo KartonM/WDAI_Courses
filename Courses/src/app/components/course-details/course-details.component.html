@@ -1,0 +1,28 @@
+<div>
+  <div class="row">
+    <div class="col-md-3">
+      <img src="{{ course.imgPath }}" width="95%"/>
+    </div>
+    <div class="col-md-9">
+      <h2>{{ course.name }}</h2>
+      <hr/>
+      <dl class="row">
+        <dt class="col-sm-3">Semestr: </dt>
+        <dd class="col-sm-9">{{ course.semester }}</dd>
+
+        <dt class="col-sm-3">Rodzaj kursu: </dt>
+        <dd class="col-sm-9">{{ courseTypeLabel }}</dd>
+
+        <dt class="col-sm-3">ECTS:</dt>
+        <dd class="col-sm-9">{{ course.ECTS }}</dd>
+      </dl>
+      <hr/>
+      <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3">Zapisz się!</button>
+      <app-star-rating></app-star-rating>
+    </div>
+  </div>
+  <div class="mt-3">
+    <h4>Opis</h4>
+    <p>{{ course.description }}</p>
+  </div>
+</div>

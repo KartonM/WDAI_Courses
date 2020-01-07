@@ -11,6 +11,14 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { AddCourseFormComponent } from './components/add-course-form/add-course-form.component';
 import { CourseFiltersComponent } from './components/course-filters/course-filters.component';
 import { SearchPipe, SemesterPipe, ECTSPipe, RatePipe } from './components/courses-list/CourseFilterPipes';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'course/:id', component: CourseDetailsComponent},
+  { path: '', component: CoursesComponent },
+  { path: '**', redirectTo: '' }
+];
 
 @NgModule({
   declarations: [
@@ -24,14 +32,17 @@ import { SearchPipe, SemesterPipe, ECTSPipe, RatePipe } from './components/cours
     SearchPipe,
     SemesterPipe,
     ECTSPipe,
-    RatePipe
+    RatePipe,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }
