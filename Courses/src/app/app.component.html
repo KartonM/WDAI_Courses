@@ -7,11 +7,17 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li *ngIf="!(authService.authState$ | async)" class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Zaloguj</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!(authService.authState$ | async)" class="nav-item">
           <a class="nav-link" [routerLink]="['/register']">Zarejestruj</a>
+        </li>
+        <li *ngIf="authService.authState$ | async as user">
+          <a class="nav-link disabled">{{ user.email }}</a>
+        </li>
+        <li *ngIf="authService.authState$ | async">
+          <a class="nav-link" href="#" (click)="signOut($event)">Wyloguj</a>
         </li>
       </ul>
     </div>

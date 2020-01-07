@@ -7,7 +7,7 @@
     <hr />
     <h5 class="mt-3">Semestr</h5>
     <div formArrayName="semester" *ngFor="let semNumber of semesterNumbers" class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [formControlName]="semNumber">
+      <input class="form-check-input" type="checkbox" value="" [formControlName]="semNumber">
       <label class="form-check-label" for="defaultCheck1">
         {{ semNumber + 1 }}. semestr
       </label>

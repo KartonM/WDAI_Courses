@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { User } from 'firebase';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:string = 'Programistyczna dupa';
+  title: string = 'Programistyczna pupa';
+
+  constructor(private authService: AuthenticationService, private router: Router) { }
+
+  signOut(event) {
+    event.preventDefault();
+    this.authService.signOutUser();
+    this.router.navigate(['']);
+  }
+
 }
