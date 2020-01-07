@@ -13,10 +13,15 @@ import { CourseFiltersComponent } from './components/course-filters/course-filte
 import { SearchPipe, SemesterPipe, ECTSPipe, RatePipe } from './components/courses-list/CourseFilterPipes';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoutes: Routes = [
   { path: 'course/:id', component: CourseDetailsComponent},
-  { path: '', component: CoursesComponent },
+  { path: 'courses', component: CoursesComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];
 
@@ -33,7 +38,9 @@ const appRoutes: Routes = [
     SemesterPipe,
     ECTSPipe,
     RatePipe,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

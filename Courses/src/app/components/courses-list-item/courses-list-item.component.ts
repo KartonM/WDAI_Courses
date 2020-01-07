@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { Course } from '../../models/Course';
-import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { Router } from '@angular/router';
+//import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
   selector: 'app-courses-list-item',
@@ -9,12 +10,12 @@ import { StarRatingComponent } from '../star-rating/star-rating.component';
 })
 export class CoursesListItemComponent implements OnInit {
   shortDescriptionLength = 220;
-  @ViewChild(StarRatingComponent, {static: false}) starRating:StarRatingComponent;
+  //@ViewChild(StarRatingComponent, {static: false}) starRating:StarRatingComponent;
 
   @Input() course: Course;
   @Output() deleteCourse: EventEmitter<Course> = new EventEmitter();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     //console.log(this.course);
@@ -29,5 +30,9 @@ export class CoursesListItemComponent implements OnInit {
   delete(event) {
     event.preventDefault();
     this.deleteCourse.emit(this.course);
+  }
+
+  routeToDetails() {
+    this.router.navigate(['/course', this.course.id]);
   }
 }

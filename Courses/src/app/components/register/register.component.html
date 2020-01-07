@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-5">
+    <h4>Rejestracja</h4>
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="center-block">
+          Email
+          <input class="form-control" formControlName="email" type="email">
+        </label>
+        <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="text-danger">
+          <small *ngIf="registerForm.controls['email'].errors.required">
+            Pole email jest wymagane
+          </small>
+          <small *ngIf="registerForm.controls['email'].errors.email">
+            Zawartość pola nie jest prawidłowym adresem email
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="center-block">
+          Hasło
+          <input class="form-control" formControlName="password" type="password">
+        </label>
+        <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="text-danger">
+          <small *ngIf="registerForm.controls['password'].errors.required">
+            Pole hasło jest wymagane
+          </small>
+          <small *ngIf="registerForm.controls['password'].errors.minlength">
+            Hasło musi mieć przynajmniej 3 znaki
+          </small>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!registerForm.valid">Zarejestruj</button>
+    </form>
+  </div>
+</div>
