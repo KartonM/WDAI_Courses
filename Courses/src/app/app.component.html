@@ -19,6 +19,9 @@
         <li *ngIf="authService.authState$ | async">
           <a class="nav-link" href="#" (click)="signOut($event)">Wyloguj</a>
         </li>
+        <li *ngIf="(authService.authState$ | async)&&((authService.authState$ | async).email == 'admin@admin.com')">
+          <a class="nav-link" href="#" (click)="signOut($event)">Panel administratora</a>
+        </li>
       </ul>
     </div>
   </nav>

@@ -24,15 +24,16 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { AuthGuard } from './guard/auth.guard';
+import { AdminGuard } from './guard/admin.guard';
 
 const appRoutes: Routes = [
   { path: 'course/:id', component: CourseDetailsComponent, canActivate: [AuthGuard]},
   { path: 'courses', component: CoursesComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminPanelComponent },
-  { path: 'addCourse', component: AddCourseComponent },
-  { path: 'editCourse/:id', component: EditCourseComponent },
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
+  { path: 'addCourse', component: AddCourseComponent, canActivate: [AdminGuard] },
+  { path: 'editCourse/:id', component: EditCourseComponent, canActivate: [AdminGuard] },
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];

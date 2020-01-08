@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/courses']);
         this.loginForm.reset();
+      })
+      .catch(error => {
+        console.log(error.message);
       });
     
   }

@@ -5,12 +5,13 @@
     "\\Courses\\src",
     "\\Courses\\src\\app",
     "\\Courses\\src\\app\\components",
-    "\\Courses\\src\\app\\components\\add-course-form",
-    "\\Courses\\src\\app\\components\\course-details",
-    "\\Courses\\src\\app\\components\\course-filters",
     "\\Courses\\src\\app\\components\\courses",
-    "\\Courses\\src\\app\\components\\star-rating"
+    "\\Courses\\src\\app\\components\\courses-list",
+    "\\Courses\\src\\app\\components\\courses-list-item",
+    "\\Courses\\src\\app\\components\\login",
+    "\\Courses\\src\\app\\guard",
+    "\\Courses\\src\\environments"
   ],
-  "SelectedNode": "\\Courses\\src\\app\\components\\star-rating\\star-rating.component.html",
+  "SelectedNode": "\\Courses\\src\\app\\components\\courses-list-item\\courses-list-item.component.html",
   "PreviewInSolutionExplorer": false
 }
