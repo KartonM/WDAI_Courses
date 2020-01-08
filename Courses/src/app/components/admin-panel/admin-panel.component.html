@@ -14,8 +14,8 @@
       <th scope="row">{{ course.id }}</th>
       <td>{{ course.name }}</td>
       <td>
-        <a href="#" class="text-primary">Edytuj</a>
-        <a href="#" class="text-danger ml-3">Usuń</a>
+        <a [routerLink]="['/editCourse', course.id]" class="text-primary">Edytuj</a>
+        <a href="#" (click)="deleteCourse(course.id, $event)" class="text-danger ml-3">Usuń</a>
       </td>
     </tr>
     </tbody>

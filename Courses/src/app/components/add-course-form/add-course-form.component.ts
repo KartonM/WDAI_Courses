@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { CourseType, Course } from '../../models/Course';
 
@@ -13,6 +13,7 @@ export class AddCourseFormComponent implements OnInit {
   courseTypes = CourseType;
   keys;
 
+  @Input() course: Course;
   @Output() addCourse: EventEmitter<Course> = new EventEmitter();
 
   constructor(private formBuilder: FormBuilder) {
@@ -20,14 +21,19 @@ export class AddCourseFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.course == null) {
+      this.course = new Course();
+      this.course.type = CourseType.Lecture;
+    }
+
     this.courseForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      imgPath: ['', [Validators.required, Validators.pattern(/\.(jpeg|jpg|gif|png|bmp)/)]],
-      semester: ['', [Validators.required, Validators.min(1), Validators.max(8)]],
-      ECTS: ['', [Validators.required, Validators.min(1), Validators.max(30)]],
-      seats: ['', [Validators.required, Validators.min(1), Validators.max(300)]],
-      type: '0',
-      description: ['', [Validators.required, Validators.minLength(30)]]
+      name: [this.course.name, Validators.required],
+      imgPath: [this.course.imgPath, [Validators.required, Validators.pattern(/\.(jpeg|jpg|gif|png|bmp)/)]],
+      semester: [this.course.semester, [Validators.required, Validators.min(1), Validators.max(8)]],
+      ECTS: [this.course.ECTS, [Validators.required, Validators.min(1), Validators.max(30)]],
+      seats: [this.course.seats, [Validators.required, Validators.min(1), Validators.max(300)]],
+      type: this.course.type,
+      description: [this.course.description, [Validators.required, Validators.minLength(30)]]
     });
   }
   getCourseTypeLabel(key) {

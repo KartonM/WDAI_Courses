@@ -19,9 +19,15 @@ export class CourseService {
 
   addCourse(course: Course) {
     console.log("Course added.");
+    console.log(JSON.stringify(course));
   }
 
   updateCourse(course: Course) {
     console.log("Course edited.");
+    console.log(JSON.stringify(course));
+  }
+
+  deleteCourse(id: number) {
+    console.log("usuwam kurs o id: " + id.toString());
   }
 }

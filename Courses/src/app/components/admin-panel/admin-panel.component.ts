@@ -16,4 +16,9 @@ export class AdminPanelComponent implements OnInit {
     this.courses = this.courseService.getCourses();
   }
 
+  deleteCourse(id: number, event) {
+    event.preventDefault();
+    this.courses = this.courses.filter(c => c.id !== id);
+    this.courseService.deleteCourse(id);
+  }
 }
