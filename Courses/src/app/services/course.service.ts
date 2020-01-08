@@ -17,5 +17,11 @@ export class CourseService {
     return this.getCourses().find(c => c.id === id);
   }
 
+  addCourse(course: Course) {
+    console.log("Course added.");
+  }
 
+  updateCourse(course: Course) {
+    console.log("Course edited.");
+  }
 }

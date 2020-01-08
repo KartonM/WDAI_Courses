@@ -20,12 +20,19 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'course/:id', component: CourseDetailsComponent},
-  { path: 'courses', component: CoursesComponent },
+  { path: 'course/:id', component: CourseDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'courses', component: CoursesComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'admin', component: AdminPanelComponent },
+  { path: 'addCourse', component: AddCourseComponent },
+  { path: 'editCourse/:id', component: EditCourseComponent },
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];
@@ -45,7 +52,10 @@ const appRoutes: Routes = [
     RatePipe,
     CourseDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminPanelComponent,
+    AddCourseComponent,
+    EditCourseComponent
   ],
   imports: [
     BrowserModule,
