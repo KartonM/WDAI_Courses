@@ -8,7 +8,7 @@
         <h5 class="mb-1">{{ course.name }}</h5>
         <!--<a href="#" (click)="delete($event)" class="text-danger">Usuń</a>-->
       </div>
-      <p class="mb-1">{{ getShortDescription() }}<a href="#" *ngIf="course.description.length >= shortDescriptionLength">Więcej</a></p>
+      <p class="mb-1">{{ getShortDescription() }}<a [routerLink]="['/course', course.id]" *ngIf="course.description.length >= shortDescriptionLength">Więcej</a></p>
     </div>
   </div>
   <div class="d-flex w-100 justify-content-between mt-3">

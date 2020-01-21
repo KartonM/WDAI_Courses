@@ -10,16 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditCourseComponent implements OnInit {
   courseToBeEdited: Course;
+  courseLoaded: Promise<boolean>;
   constructor(private courseService: CourseService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      console.log(params['id']);
-      this.courseToBeEdited = this.courseService.getCourse(+params['id']);
+    const courseId: string = this.route.snapshot.paramMap.get('id');
+
+    this.courseService.getCourse(courseId).subscribe(c => {
+      this.courseToBeEdited = c;
+      this.courseToBeEdited.id = courseId;
+      console.log(this.courseToBeEdited.toString());
+      this.courseLoaded = Promise.resolve(true);
     });
   }
 
   editCourse(course: Course) {
+    course.id = this.route.snapshot.paramMap.get('id');
     this.courseService.updateCourse(course);
     this.router.navigate(['/admin']);
   }

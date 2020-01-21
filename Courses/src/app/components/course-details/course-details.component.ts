@@ -15,9 +15,10 @@ export class CourseDetailsComponent implements OnInit {
   constructor(private courseService: CourseService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      console.log(params['id']);
-      this.course = this.courseService.getCourse(+params['id']);
+    const courseId : string = this.route.snapshot.paramMap.get('id');
+    this.courseService.getCourse(courseId).subscribe(c => {
+      this.course = c;
+      this.course.id = courseId;
       this.courseTypeLabel = Course.typeLabel(this.course.type);
     });
   }

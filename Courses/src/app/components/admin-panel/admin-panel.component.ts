@@ -13,7 +13,9 @@ export class AdminPanelComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.courseService.getCourses().subscribe(courses =>
+      this.courses = courses
+    );
   }
 
   deleteCourse(id: number, event) {

@@ -5,13 +5,12 @@
     "\\Courses\\src",
     "\\Courses\\src\\app",
     "\\Courses\\src\\app\\components",
+    "\\Courses\\src\\app\\components\\course-details",
     "\\Courses\\src\\app\\components\\courses",
     "\\Courses\\src\\app\\components\\courses-list",
     "\\Courses\\src\\app\\components\\courses-list-item",
-    "\\Courses\\src\\app\\components\\login",
-    "\\Courses\\src\\app\\guard",
-    "\\Courses\\src\\environments"
+    "\\Courses\\src\\app\\components\\login"
   ],
-  "SelectedNode": "\\Courses\\src\\app\\components\\courses-list-item\\courses-list-item.component.html",
+  "SelectedNode": "\\Courses\\src\\app\\components\\courses-list-item\\courses-list-item.component.ts",
   "PreviewInSolutionExplorer": false
 }

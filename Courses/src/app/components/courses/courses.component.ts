@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/Course';
 import { CourseService } from '../../services/course.service';
 import { CourseFilters } from '../../models/CourseFilters';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,7 +17,9 @@ export class CoursesComponent implements OnInit {
   constructor(private courseService:CourseService) { }
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.courseService.getCourses().subscribe(courses =>
+      this.courses = courses
+    );
     console.log(this.courses);
   }
 

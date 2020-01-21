@@ -1,6 +1,6 @@
 <div>
   <h4>Edytuj kurs o id: {{ courseToBeEdited.id }}</h4>
-  <app-add-course-form
+  <app-add-course-form *ngIf="courseLoaded | async"
     (addCourse)="editCourse($event)"
     [course]="courseToBeEdited">
   </app-add-course-form>

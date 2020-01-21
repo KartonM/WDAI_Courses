@@ -1,5 +1,5 @@
 export class Course {
-  id: number;
+  id: string;
   name: string;
   ECTS: number;
   semester: number;
