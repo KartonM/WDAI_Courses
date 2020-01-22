@@ -24,7 +24,8 @@
       </dl>
       <hr/>
       <div *ngIf="notEnrolled | async">
-        <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3" (click)="enroll()">Zapisz się!</button>
+        <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3" (click)="enroll()" [disabled]="!enoughSeats">Zapisz się!</button>
+        <p class="text-danger">{{ enrollmentPossibleMessage }} </p>
       </div>
       <app-star-rating *ngIf="enrolledAndNotRated | async" (courseRated)="rateCourse($event)"></app-star-rating>
       <div *ngIf="enrolledAndRated | async">

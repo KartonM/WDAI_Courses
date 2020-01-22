@@ -22,6 +22,8 @@ export class CourseDetailsComponent implements OnInit {
   private userRate;
   private availableSeats;
   private takenSeats;
+  private enoughSeats = true;
+  private enrollmentPossibleMessage = '';
 
   constructor(private courseService: CourseService, private enrollmentAndRRatingService: EnrollmentAndRatingService, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
@@ -33,6 +35,14 @@ export class CourseDetailsComponent implements OnInit {
       this.courseTypeLabel = Course.typeLabel(this.course.type);
 
       this.availableSeats = this.course.seats - this.takenSeats;
+      if (this.availableSeats <= 0) {
+        this.enoughSeats = false;
+        this.enrollmentPossibleMessage = 'Brak dostępnych miejsc na ten kurs.';
+      } else {
+        this.enoughSeats = true;
+        this.enrollmentPossibleMessage = '';
+      }
+
     });
 
     var email = this.authService.getUser().email;
@@ -52,6 +62,13 @@ export class CourseDetailsComponent implements OnInit {
 
       this.takenSeats = es.filter(e => e.courseId === courseId).length;
       this.availableSeats = this.course.seats - this.takenSeats;
+      if (this.availableSeats <= 0) {
+        this.enoughSeats = false;
+        this.enrollmentPossibleMessage = 'Brak dostępnych miejsc na ten kurs.';
+      } else {
+        this.enoughSeats = true;
+        this.enrollmentPossibleMessage = '';
+      }
       }
     );
   }
@@ -71,5 +88,16 @@ export class CourseDetailsComponent implements OnInit {
         this.rate = this.enrollmentAndRRatingService.averageCourseRating(es.filter(e => e.courseId === this.course.id)).toString();
       }
     );
+  }
+
+  updateAvailableSeats() {
+    this.availableSeats = this.course.seats - this.takenSeats;
+    if (this.availableSeats <= 0) {
+      this.enoughSeats = false;
+      this.enrollmentPossibleMessage = 'Brak dostępnych miejsc na ten kurs.';
+    } else {
+      this.enoughSeats = true;
+      this.enrollmentPossibleMessage = '';
+    }
   }
 }
