@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  firebaseError: string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) { }
 
@@ -23,9 +24,15 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.registerForm.value.email);
     console.log(this.registerForm.value.password);
-    this.authService.signUpUser(this.registerForm.value.email, this.registerForm.value.password);
-    this.registerForm.reset();
-    this.router.navigate(['/login']);
+    this.authService.signUpUser(this.registerForm.value.email, this.registerForm.value.password)
+      .then(() => {
+        this.router.navigate(['/login']);
+        this.registerForm.reset();
+      })
+      .catch(error => {
+        console.log(error.message);
+        this.firebaseError = error.message;
+      });
   }
 
 }

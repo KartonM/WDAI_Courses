@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  firebaseError: string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) { }
 
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
       })
       .catch(error => {
         console.log(error.message);
+        this.firebaseError = error.message;
       });
     
   }
