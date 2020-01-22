@@ -15,10 +15,21 @@
 
         <dt class="col-sm-3">ECTS:</dt>
         <dd class="col-sm-9">{{ course.ECTS }}</dd>
+
+        <dt class="col-sm-3">Wolne miejsca:</dt>
+        <dd class="col-sm-9">{{ availableSeats }}</dd>
+
+        <dt class="col-sm-3">Średnia ocen:</dt>
+        <dd class="col-sm-9">{{ rate }}</dd>
       </dl>
       <hr/>
-      <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3">Zapisz się!</button>
-      <app-star-rating></app-star-rating>
+      <div *ngIf="notEnrolled | async">
+        <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3" (click)="enroll()">Zapisz się!</button>
+      </div>
+      <app-star-rating *ngIf="enrolledAndNotRated | async"></app-star-rating>
+      <div *ngIf="enrolledAndRated | async">
+        <p>Oceniłeś ten kurs na: {{ userRate }}</p>
+      </div>
     </div>
   </div>
   <div class="mt-3">

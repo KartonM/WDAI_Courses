@@ -28,7 +28,7 @@ import { AdminGuard } from './guard/admin.guard';
 
 const appRoutes: Routes = [
   { path: 'course/:id', component: CourseDetailsComponent, canActivate: [AuthGuard]},
-  { path: 'courses', component: CoursesComponent, canActivate: [AuthGuard] },
+  { path: 'courses', component: CoursesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },

@@ -18,9 +18,8 @@ export class AdminPanelComponent implements OnInit {
     );
   }
 
-  deleteCourse(id: number, event) {
+  deleteCourse(id: string, event) {
     event.preventDefault();
-    this.courses = this.courses.filter(c => c.id !== id);
     this.courseService.deleteCourse(id);
   }
 }
