@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-star-rating',
@@ -11,6 +11,9 @@ export class StarRatingComponent implements OnInit {
   starFilled: boolean[];
   rated = false;
   rate: number;
+
+  @Output() courseRated = new EventEmitter<number>();
+
   constructor() {
     this.starNumbers = Array(this.maxRating).fill(0).map((x, i) => i);
     this.starFilled = Array(this.maxRating).fill(false);
@@ -24,8 +27,11 @@ export class StarRatingComponent implements OnInit {
   }
 
   setRate(i) {
-    this.rated = true;
     this.rate = i + 1;
+    if (!this.rated) {
+      this.courseRated.emit(this.rate);
+    }
+    this.rated = true;
   }
 
   clearRating(): void {

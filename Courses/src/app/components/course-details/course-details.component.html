@@ -26,7 +26,7 @@
       <div *ngIf="notEnrolled | async">
         <button id="enrollButton" class="btn btn-lg btn-outline-primary my-3" (click)="enroll()">Zapisz się!</button>
       </div>
-      <app-star-rating *ngIf="enrolledAndNotRated | async"></app-star-rating>
+      <app-star-rating *ngIf="enrolledAndNotRated | async" (courseRated)="rateCourse($event)"></app-star-rating>
       <div *ngIf="enrolledAndRated | async">
         <p>Oceniłeś ten kurs na: {{ userRate }}</p>
       </div>

@@ -34,20 +34,40 @@ export class EnrollmentAndRatingService {
     return true;
   }
 
+  rateCourse(courseId: string, rate: number) {
+    if (this.authService.authState$ == null) {
+      console.log('You have to be signed in to rate courses.');
+      return false;
+    }
+
+    this.db.collection<CourseEnrollment>('/enrollmentsAndRates').valueChanges({ idField: 'id' })
+      .subscribe(es => {
+        var enrollment =
+          es.find(e => e.courseId === courseId && e.email === this.authService.getUser().email);
+
+        this.db.collection('/enrollmentsAndRates').doc(enrollment.id).set({
+          'email': enrollment.email,
+          'courseId': enrollment.courseId,
+          'rate': rate
+        });
+      });
+  }
+
   averageCourseRating(enrollments: CourseEnrollment[]) {
     if (!enrollments) return 'Ten kurs nie ma jeszcze ocen';
+
     var rateSum = 0;
     var ratesCount = 0;
-   // console.log("Sprawdzam ocenę");
-   // console.log("mam " + enrollments.length + " zapisów do przejrzenia");
+
     for (var i = 0; i < enrollments.length; i++) {
       if (!enrollments[i].rate) continue;
       rateSum += enrollments[i].rate;
       ratesCount++;
     }
-    //console.log(rateSum);
-    //console.log(ratesCount);
+
     if (ratesCount == 0) return 'Ten kurs nie ma jeszcze ocen';
-    return rateSum / ratesCount;
+
+    var avg = rateSum / ratesCount;
+    return Math.round(avg * 100) / 100;
   }
 }

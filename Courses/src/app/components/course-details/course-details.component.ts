@@ -63,4 +63,13 @@ export class CourseDetailsComponent implements OnInit {
     }
   }
 
+  rateCourse(rate: number) {
+    console.log('Oceniono kurs na: ' + rate);
+    this.enrollmentAndRRatingService.rateCourse(this.course.id, rate);
+
+    this.enrollmentAndRRatingService.getEnrollments().subscribe(es => {
+        this.rate = this.enrollmentAndRRatingService.averageCourseRating(es.filter(e => e.courseId === this.course.id)).toString();
+      }
+    );
+  }
 }
