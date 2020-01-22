@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class CourseDetailsComponent implements OnInit {
   private course: Course;
   private courseTypeLabel: string;
+  private participants: string[];
 
   private notEnrolled: Promise<boolean>;
   private enrolledAndNotRated: Promise<boolean>;
@@ -59,6 +60,8 @@ export class CourseDetailsComponent implements OnInit {
       this.enrolledAndRated = Promise.resolve(isEnrolled && hasRated);
 
       this.rate = this.enrollmentAndRRatingService.averageCourseRating(es.filter(e => e.courseId === courseId)).toString();
+
+      this.participants = es.filter(e => e.courseId === courseId).map(e => e.email);
 
       this.takenSeats = es.filter(e => e.courseId === courseId).length;
       this.availableSeats = this.course.seats - this.takenSeats;
